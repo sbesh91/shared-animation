@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>shared-animation</title>
+    <meta name="description" content="shared-animation description">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="/src/elements.html">
+    <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-reverse iron-flex-factors iron-positioning"></style>
+    <style>
+      body {
+        font-family: 'Robot', sans-serif;
+      }
+      neon-animated-pages {
+        overflow: hidden;
+      }
+      #header{
+        transition: background-color 500ms ease-in-out;
+      }
+      .max{
+        width:100%;
+        height:100%;
+      }
+    </style>    
+  </head>
+  <body class="fullbleed layout vertical">
+    <shared-animation-app class="max"></shared-animation-app>
+  </body>
+</html>

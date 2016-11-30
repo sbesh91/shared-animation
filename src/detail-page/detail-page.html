@@ -1,0 +1,333 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="detail-page">
+
+  <style>
+
+    :host {
+      display: block;
+    }
+
+    #header {
+      background-color: #3f51b5;
+      z-index: 100000;
+      will-change:transform;
+    }
+    .container {
+      background: white;
+    }
+    .content {
+      padding: 36px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 20px;
+    }
+    .row {
+      margin: 56px 0;
+    }
+    paper-scroll-header-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /*background-color: var(--paper-grey-200, #eee);*/
+
+      /* background for toolbar when it is at its full size*/
+      will-change:transform;
+      --paper-scroll-header-panel-full-header: {
+        display: none;
+        transition: background-color 500ms ease-in-out;
+        background-color: #3f51b5;
+      };
+
+      /* background for toolbar when it is condensed */
+      --paper-scroll-header-panel-condensed-header: {
+        background-color: #3f51b5;
+      };
+    }
+    paper-toolbar {
+      /* custom toolbar height */
+      height: 256px;
+      background-color: transparent;
+      overflow: visible;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    paper-icon-button {
+      margin: 0 8px;
+      --paper-icon-button-ink-color: white;
+    }
+
+    .bottom-text {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+
+      font-size: 20px;
+    }
+
+    .subtitle {
+      padding-top: 4px;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    .indent {
+      margin-left: 60px;
+    }
+
+    .spacer {
+      @apply(--layout-flex);
+    }
+    #rippleEnd{
+      background:#eee;
+      height:100%;
+      width: 100%;
+      border-radius: 50%;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      opacity: .3;
+    }
+    .grid-item{
+      -webkit-box-flex:30%;
+      -webkit-flex:30%;
+      -ms-flex:30%;
+      flex:30%;
+      padding:10px;
+      will-change:transform;
+    }
+    @media screen and (max-width: 768px){
+      .grid-item{
+        -webkit-box-flex:47%;
+        -webkit-flex:47%;
+        -ms-flex:47%;
+        flex:47%;
+      }
+    }
+    @media screen and (max-width: 480px){
+      .grid-item{
+        -webkit-box-flex:100%;
+        -webkit-flex:100%;
+        -ms-flex:100%;
+        flex:100%;
+      }
+    }
+    .grid-item paper-material{
+      padding:10px;
+      background-color: white;
+    }
+    #content{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+    }
+  </style>
+
+  <template>
+    <paper-scroll-header-panel id="panel" condenses keep-condensed-header header-height="256" condensed-header-height="64">
+
+      <paper-toolbar id="header">
+
+        <paper-icon-button id="back" on-click="prev" icon="arrow-back"></paper-icon-button>
+        <div class="spacer"></div>
+        <paper-icon-button icon="thumb-up"></paper-icon-button>
+
+        <div style="visibility:hidden" id="headerText" class="bottom indent bottom-text" self-end>
+          <div>Some text here</div>
+          <div class="subtitle">Subtext here</div>
+        </div>
+      </paper-toolbar>
+      <div id="rippleEnd"></div>
+      <div class="content" id="content">
+        <div class="grid-item flex">
+          <paper-material elevation="1" class="flex">
+            <img src="http://placehold.it/80x80">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </paper-material>
+        </div>
+        <div class="grid-item flex">
+          <paper-material elevation="1" class="flex">
+            <img src="http://placehold.it/80x80">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </paper-material>
+        </div>
+        <div class="grid-item flex">
+          <paper-material elevation="1" class="flex">
+            <img src="http://placehold.it/80x80">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </paper-material>
+        </div>
+        <div class="grid-item flex">
+          <paper-material elevation="1" class="flex">
+            <img src="http://placehold.it/80x80">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </paper-material>
+        </div>
+        <div class="grid-item flex">
+          <paper-material elevation="1" class="flex">
+            <img src="http://placehold.it/80x80">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </paper-material>
+        </div>
+      </div>
+    </paper-scroll-header-panel>
+  </template>
+
+  <script>
+
+    Polymer({
+      is: 'detail-page',
+      behaviors: [
+        Polymer.NeonSharedElementAnimatableBehavior,
+        Polymer.NeonAnimationRunnerBehavior,
+        Polymer.NeonAnimatableBehavior
+      ],
+      properties: {
+        selected: {
+          type: Number,
+          notify: true
+        },
+        ref:{
+          type: Object,
+          notify: true
+        },
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': [
+              {
+                name: 'hero-animation',
+                id: 'hero',
+                toPage: this,
+                timing: {
+                  easing: "cubic-bezier(.55,1.04,.55,1.04)",
+                  delay: 100,
+                  duration: 800
+                }
+              },
+              {
+                name: 'ripple-animation',
+                id: 'ripple',
+                toPage: this,
+                timing: {
+                  duration: 1000
+                }
+              },
+              {
+                name: 'circle-to-square',
+                node: this.$.header,
+                timing:{
+                  delay:100,
+                  duration:500
+                }
+              },
+              {
+                name:"fade-in-animation",
+                node: this.$.content,
+                timing:{
+                  delay:800,
+                  duration:1400
+                }
+              },
+              {
+                name:"cascaded-animation",
+                animation:"slide-from-top-animation",
+                nodeDelay:50,
+                timing:{
+                  delay:750,
+                  duration:600
+                }
+              }
+            ],
+              'exit': [
+              {
+                name: 'fade-out-animation',
+                node: this,
+                timing:{
+                  duration:400
+                }
+              },{
+                name: 'hero-back-animation',
+                id: 'hero-back',
+                fromPage: this,
+                timing: {
+                  delay:100,
+                  easing: "cubic-bezier(.55,1.04,.55,1.04)",
+                  duration: 800
+                }
+              }
+            ]
+            }
+          }
+        },
+        sharedElements: {
+          value: function() {
+            return {
+              'hero': this.$.header,
+              'hero-back': this.$.header,
+              'ripple': this.$.rippleEnd
+            }
+          }
+        }
+      },
+      created: function() {
+        this.async(function() {
+          var nodeList = Polymer.dom(this.root).querySelectorAll('.grid-item');
+          this.animationConfig['entry'][4].nodes = Array.prototype.slice.call(nodeList);
+        });
+      },
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+      show: function() {
+        app.selected = 1;
+        this.playAnimation('entry');
+      },
+      hide: function() {
+        app.selected = 0;
+        this.playAnimation('exit');
+      },
+      _onNeonAnimationFinish: function() {
+        console.log("end animate previous");
+      },
+      prev: function() {
+        var that = this;
+        that.ref.querySelector("#rippleStart").style.display = "none";
+        that.querySelector("paper-scroll-header-panel").scroll(0,false);
+        that.querySelector("#headerBg").style.display = "none";
+        that.querySelector("#header").style.backgroundColor = "#3f51b5";
+        that.querySelector("paper-scroll-header-panel").style.backgroundColor = "";
+        that.ref.querySelector("#circle").style.visibility = "visible";
+        that.querySelector("#headerText").style.visibility = "hidden";
+        that.ref.querySelector("paper-fab").disabled = true;
+        this.selected = 0;
+        setTimeout(function() {
+          that.ref.querySelector("paper-fab").style.display = "";
+          that.querySelector("#rippleEnd").style.display = "";
+          that.ref.querySelector("paper-fab").disabled = false;
+        }, 600);
+      }
+    });
+
+  </script>
+
+</dom-module>

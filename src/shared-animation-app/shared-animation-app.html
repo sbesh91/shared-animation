@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="shared-animation-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <neon-animated-pages class="flex max" selected="{{selected}}">
+      <main-page selected="{{selected}}" ref="{{ref}}"></main-page>
+      <detail-page selected="{{selected}}" ref="{{detailRef}}"></detail-page>
+    </neon-animated-pages>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'shared-animation-app',
+      properties: {
+        selected: {
+          type: Number,
+          value: 0,
+          notify: true
+        },
+        ref:{
+          type: Object
+        },
+        detailRef:{
+          type: Object
+        }
+      },
+      created: function() {
+        var that = this;
+        that.async(function() {
+          that.ref = that.querySelector("detail-page");
+          that.detailRef = this.querySelector("main-page");
+        });
+      },
+    });
+  </script>
+</dom-module>

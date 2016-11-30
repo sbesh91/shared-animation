@@ -1,0 +1,191 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="main-page">
+
+  <style>
+
+    :host {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+    }
+
+    #circle {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 60px;
+      height: 60px;
+      margin: 16px;
+      border-radius: 50%;
+      background: #3f51b5;
+      will-change:transform;
+    }
+
+    #circle paper-fab{
+      background-color:#3f51b5;
+      width: 60px;
+      height: 60px;
+    }
+
+    .sign-in {
+      font-size: 36px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: lighter;
+    }
+    #box{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
+    #rippleStart{
+      height:200px;
+      width: 200px;
+      border-radius: 50%;
+      position: fixed;
+      left: calc(50% - 100px);
+      top: 50%;
+      opacity: .3;
+    }
+  </style>
+
+  <template>
+    <div id="box">
+      <div id="circle">
+        <paper-fab on-click="next" icon="fullscreen"></paper-fab>
+        <div style="display:none" id="rippleStart"></div>
+      </div>
+      <div class="sign-in">Sign In</div>
+    </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'main-page',
+    behaviors: [
+      Polymer.NeonSharedElementAnimatableBehavior,
+      Polymer.NeonAnimationRunnerBehavior,
+      Polymer.NeonAnimatableBehavior
+    ],
+    properties: {
+      selected: {
+        type: Number,
+        notify: true
+      },
+      ref:{
+        type: Object,
+        notify: true
+      },
+      animationConfig: {
+        value: function() {
+          return {
+            'entry': [
+            {
+              name:"fade-in-animation",
+              node:this,
+              timing:{
+                duration:600
+              }
+            },{
+              name: 'hero-back-animation',
+              id: 'hero-back',
+              toPage: this,
+              timing: {
+                delay:100,
+                easing: "cubic-bezier(.55,1.04,.55,1.04)",
+                duration: 800
+              }
+            },{
+              name: 'square-to-circle',
+              node: this.$.circle,
+              timing:{
+                delay:50,
+                duration:400
+              }
+            }
+          ],
+            'exit': [
+            {
+              name: 'hero-animation',
+              id: 'hero',
+              fromPage: this
+            },
+            {
+              name: 'ripple-animation',
+              id: 'ripple',
+              fromPage: this
+            },
+            {
+              name: 'fade-out-animation',
+              node: this
+            }
+          ]
+          }
+        }
+      },
+
+      sharedElements: {
+        value: function() {
+          return {
+            'hero': this.$.circle,
+            'hero-back': this.$.circle,
+            'ripple': this.$.rippleStart
+          }
+        }
+      }
+    },
+    listeners: {
+      'neon-animation-finish': '_onNeonAnimationFinish'
+    },
+    show: function() {
+      this.selected = 1;
+      this.playAnimation('entry');
+    },
+    hide: function() {
+      this.selected = 0;
+      this.playAnimation('exit');
+    },
+    _onNeonAnimationFinish: function() {
+      console.log("end animate next");
+    },
+    next: function(){
+      var that = this;
+      that.ref.querySelector("#back").style.display = "none";
+      this.querySelector("#rippleStart").style.display = "";
+      that.ref.querySelector("#back").disabled = true;
+      this.selected = 1;
+
+      that.ref.querySelector("#headerBg").innerHTML
+        = "<iron-image src='bower_components/paper-scroll-header-panel/demo/images/bg1.jpg'"
+        + "preload fade sizing='cover' style='display:block;height:100%;' ></iron-image>";
+
+      setTimeout(function(){
+        that.ref.querySelector("paper-scroll-header-panel").style.backgroundColor = "#eee";
+        that.ref.querySelector("#rippleEnd").style.display = "none";
+      },1150);
+      setTimeout(function () {
+        that.ref.querySelector("#headerBg").style.display = "block";
+        that.ref.querySelector("#header").style.backgroundColor = "transparent";
+        that.ref.querySelector("#headerText").style.visibility = "visible";
+        that.ref.querySelector("#header").style.zIndex = "0";
+        that.querySelector("paper-fab").style.display = "none";
+      }, 950);
+      setTimeout(function(){
+        that.ref.querySelector("#back").disabled = false;
+        that.ref.querySelector("#back").style.display = "";
+      },1400)
+    }
+  });
+
+</script>
