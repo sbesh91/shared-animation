@@ -232,14 +232,14 @@
                   duration: 1000
                 }
               },
-              {
-                name: 'circle-to-square',
-                node: this.$.header,
-                timing:{
-                  delay:100,
-                  duration:500
-                }
-              },
+              // { //todo find a way to make this work quickly
+              //   name: 'circle-to-square',
+              //   node: this.$.header,
+              //   timing:{
+              //     delay:100,
+              //     duration:500
+              //   }
+              // },
               {
                 name:"fade-in-animation",
                 node: this.$.content,
@@ -292,7 +292,7 @@
       created: function() {
         this.async(function() {
           var nodeList = Polymer.dom(this.root).querySelectorAll('.grid-item');
-          this.animationConfig['entry'][4].nodes = Array.prototype.slice.call(nodeList);
+          this.animationConfig['entry'][3].nodes = Array.prototype.slice.call(nodeList);
         });
       },
       listeners: {
