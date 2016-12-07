@@ -150,7 +150,7 @@
       <div class="content" id="content">
         <div class="grid-item flex">
           <paper-material elevation="1" class="flex">
-            <img src="http://placehold.it/80x80">
+            <img src="https://placehold.it/80x80">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
@@ -158,7 +158,7 @@
         </div>
         <div class="grid-item flex">
           <paper-material elevation="1" class="flex">
-            <img src="http://placehold.it/80x80">
+            <img src="https://placehold.it/80x80">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
@@ -166,7 +166,7 @@
         </div>
         <div class="grid-item flex">
           <paper-material elevation="1" class="flex">
-            <img src="http://placehold.it/80x80">
+            <img src="https://placehold.it/80x80">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
@@ -174,7 +174,7 @@
         </div>
         <div class="grid-item flex">
           <paper-material elevation="1" class="flex">
-            <img src="http://placehold.it/80x80">
+            <img src="https://placehold.it/80x80">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
@@ -182,7 +182,7 @@
         </div>
         <div class="grid-item flex">
           <paper-material elevation="1" class="flex">
-            <img src="http://placehold.it/80x80">
+            <img src="https://placehold.it/80x80">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
@@ -236,7 +236,7 @@
                 name:"fade-in-animation",
                 node: this.$.content,
                 timing:{
-                  delay:800,
+                  delay:750,
                   duration:1400
                 }
               },
@@ -253,19 +253,11 @@
               'exit': [
               {
                 name: 'fade-out-animation',
-                node: this,
-                timing:{
-                  duration:400
-                }
+                node: this                
               },{
                 name: 'hero-back-animation',
                 id: 'hero-back',
-                fromPage: this,
-                timing: {
-                  delay:100,
-                  easing: "cubic-bezier(.55,1.04,.55,1.04)",
-                  duration: 800
-                }
+                fromPage: this
               }
             ]
             }
